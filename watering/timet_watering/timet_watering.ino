@@ -9,8 +9,8 @@ unsigned long sinceOff = millis();
 bool isOn = false;
 const int motorPin=9;
 const int switchPin=2;
-#define WATERING_TIME 3
-#define INTEVAL_TIME 259200
+const int WATERING_TIME=8;
+const unsigned long INTEVAL_TIME=259200;
 
 
 //motor
@@ -71,6 +71,27 @@ void handlePressBtn(){
   }
 }
 
+String display = String(0 + ":"+0);
+void handleDisplay(){
+  unsigned long timeUntilNextRun =  INTEVAL_TIME -  timeSince(sinceOff);
+  int days = timeUntilNextRun/3600;
+  int hours = timeUntilNextRun/3600%60;
+  int minutes = ((timeUntilNextRun/60)%60);
+  int seconds = (timeUntilNextRun%60);
+  display = String( hours);
+   display = display.concat("e");
+  Serial.println("timeUntilNextRun");
+  Serial.print(hours);
+  Serial.print(":");
+  Serial.print(minutes);
+   Serial.print(":");
+  Serial.print(seconds);
+  Serial.println();
+  
+
+  
+}
+
 void setup() {
     Serial.begin(9600);
     Serial.println("setup");
@@ -80,5 +101,6 @@ void setup() {
 void loop() {
     handlePressBtn();
     handleWatering();
-//    delay(1000);
+    handleDisplay();
+    delay(1000);
 }
