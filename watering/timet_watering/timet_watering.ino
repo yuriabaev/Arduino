@@ -11,7 +11,7 @@ bool isOn = false;
 bool isCustom = false;
 const int motorPin = 9;
 const int switchPin = 2;
-const int WATERING_TIME = 8;
+const int WATERING_TIME = 2;
 const unsigned long INTEVAL_TIME = 259200;
 
 
@@ -37,7 +37,7 @@ void motorOn() {
 }
 //end motor
 
-int timeSince(unsigned long time) {
+unsigned long timeSince(unsigned long time) {
   return (millis() - time) / 1000;
 }
 
