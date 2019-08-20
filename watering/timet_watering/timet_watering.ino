@@ -55,18 +55,22 @@ void handleWatering() {
     Serial.println(isOn);
   }
 }
-int switchState = 0;
 
+int switchState = 0;
+int switchPrevState = 0;
 void handlePressBtn() {
   switchState = digitalRead(switchPin);
-  Serial.println(switchState);
-  if (switchState == HIGH) {
-    motorOn();
-    isCustom = true;
-  } else {
-    motorOff();
-    isCustom = false;
-  }
+
+  if( switchPrevState!=switchState){
+    switchPrevState=switchState;
+    if (switchState == HIGH ) {
+      motorOn();
+      isCustom = true;
+    } else {
+      motorOff();
+      isCustom = false;
+    }
+   }
 }
 
 String display = String(0 + ":" + 0);
