@@ -11,7 +11,7 @@ bool isOn = false;
 bool isCustom = false;
 const int motorPin = 9;
 const int switchPin = 2;
-const int WATERING_TIME = 2;
+const int WATERING_TIME = 3;
 const unsigned long INTEVAL_TIME = 259200;
 
 
